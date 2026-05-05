@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arifal Yoga Dwimulti - Agricultural Engineering Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2d5a27;
+            --secondary-green: #4a7c59;
+            --accent-green: #7cb342;
+            --light-green: #e8f5e8;
+            --white: #ffffff;
+            --dark: #1a1a1a;
+            --gray: #666;
+            --light-gray: #f5f5f5;
+        }
+
+        [data-theme="dark"] {
+            --primary-green: #4a9c5e;
+            --secondary-green: #6ab47f;
+            --accent-green: #9ccc65;
+            --light-green: #2d3b2d;
+            --white: #f8f9fa;
+            --dark: #121212;
+            --gray: #aaa;
+            --light-gray: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] nav {
+            background: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-green);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--white) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--light-gray) 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            border: 5px solid var(--accent-green);
+            box-shadow: 0 10px 30px rgba(124, 179, 66, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-green), var(--secondary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--secondary-green);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(45, 90, 39, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(45, 90, 39, 0.4);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-green);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-green);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-green);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--light-green);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        [data-theme="dark"] .skill-item {
+            background: var(--light-gray);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-green);
+            box-shadow: 0 10px 25px rgba(124, 179, 66, 0.2);
+        }
+
+        .skill-item i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        [data-theme="dark"] .project-card {
+            background: var(--light-gray);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .project-image {
+            height: 220px;
+            background: linear-gradient(45deg, var(--primary-green), var(--secondary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+        .project-image i {
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+
+        .project-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: var(--light-green);
+            color: var(--primary-green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        [data-theme="dark"] .tech-tag {
+            background: var(--light-gray);
+            color: var(--accent-green);
+        }
+
+        /* Timeline */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--light-green);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        /* TIMELINE CENTER VERSION */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline-content::before {
+    display: none;
+}
+.timeline-item {
+    margin-bottom: 3rem;
+    position: relative;
+    text-align: center;
+}
+
+.timeline-content {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+}
+
+[data-theme="dark"] .timeline-content {
+    background: var(--light-gray);
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-date {
+    color: var(--secondary-green);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            width: 45%;
+        }
+
+        [data-theme="dark"] .timeline-content {
+            background: var(--light-gray);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            top: 2rem;
+            right: -10px;
+            border: 4px solid var(--white);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -10px;
+            right: auto;
+        }
+
+        .timeline-date {
+            color: var(--secondary-green);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: var(--light-green);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .contact-item {
+            background: var(--light-gray);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item i {
+            font-size: 3rem;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            [data-theme="dark"] .nav-links {
+                background: var(--dark);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                transform: none !important;
+                margin-left: 50px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+            }
+
+            .timeline-content::before {
+                left: -10px !important;
+                right: auto !important;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Arifalyd</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="image/profil setengah badan.jpg" alt="Profile Photo">
+            <h1>Arifal Yoga Dwimulti</h1>
+            <h2>Agricultural Engineering and 3D Design</h2>
+            <p>Spesialis perancangan desain mesin berbasis Solidworks dan AutoCAD, perakitan Mesin otomatis dengan basis Microcoltroller dan perbaikan mesin serta Transmisi dengan basis Mesin Diesel dan Bensin.</p>
+            <a href="#projects" class="cta-button">Projek Saya</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Passionate Agricultural Engineer</h3>
+                <p>Saya adalah seorang mahasiswa DIII Jurusan Teknologi Mekanisasi Pertanian semester akhir dengan IPK 3,53 memiliki keahlian di bidang perbaikan dan perawatan alat mesin pertanian bermesin Diesel dan Bensin. saya juga mampu menggunakan Software Desain 3D seperti Solidworks dan AutoCAD untuk menganalisis sistem kerja dan menganalisa masalah pada mekanisme kerja mesin. Saya memiliki minat dan ketertarikan pada sistem Otomasi dan Teknologi berbasis MicroColtroler atau Bottom Switch .</p>
+                <p>Saya memiliki pengalaman dalam mengerjakan projek mandiri seperti Desain pada perangkat pembantu bengkel berupa MiniCrane,Alat untuk usaha Micro berupa Mesin Pemotong dodol dengan Conveyor,serta pendisainan ulang perangkat yang sudah ada. Saya juga memiliki pengalaman dalam menjalankan projek Tugas Kampus dengan basis MicroColtroler seperti ESP32 pada mini robot Sprayer Follower Human dan juga sistem penyiraman otomatis. </p>
+            </div>
+            <div>
+                <h3>Core Interests</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><i class="fas fa-tractor" style="color: var(--accent-green); margin-right: 0.5rem;"></i>Agricultural Machinery Design</li>
+                    <li><i class="fas fa-robot" style="color: var(--accent-green); margin-right: 0.5rem;"></i>Automation & IoT Systems</li>
+                    <li><i class="fas fa-solar-panel" style="color: var(--accent-green); margin-right: 0.5rem;"></i>Renewable Energy Applications</li>
+                    <li><i class="fas fa-cogs" style="color: var(--accent-green); margin-right: 0.5rem;"></i>Mechanical Transmission Systems</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="fade-in">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <i class="fas fa-drafting-compass"></i>
+                <h4>Mechanical Design</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-draw-polygon"></i>
+                <h4>CAD (SolidWorks, AutoCAD)</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fab fa-arduino"></i>
+                <h4>Arduino & ESP32</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-network-wired"></i>
+                <h4>IoT Systems</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-solar-panel"></i>
+                <h4>Solar Tracking</h4>
+            </div>
+            <div class="skill-item">
+                <i class="fas fa-cogs"></i>
+                <h4>Transmission Systems</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="fade-in">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="image/skema kerja penyiraman otomatis.png" alt="Project 3">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">automation watering with ESP32 & LDR</h3>
+                    <p class="project-description">merancang sistem penyiraman tanaman otomatis dengan menggunakan ESP32 dan dapat di kontro melalui Blynk serta pencatatan data via IoT dashboard.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">ESP32</span>
+                        <span class="tech-tag">Arduino IDE</span>
+                        <span class="tech-tag">LDR Sensors</span>
+                        <span class="tech-tag">IoT</span>
+                        <span class="tech-tag">Blynk</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="image/mini combine.jpg" alt="Project 2">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Transmission in reaper Machine</h3>
+                    <p class="project-description">merancang sistem transmisi pada mesin pemanen Biomassa berbasis Mesin Mini Combine Harvester</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">SolidWorks</span>
+                        <span class="tech-tag">Welding</span>
+                        <span class="tech-tag">Mild Steel</span>
+                        <span class="tech-tag">Manufacture Machining</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="image/mesin dodol.jpg" alt="Project 1">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Mesin Pemotong Dodol </h3>
+                    <p class="project-description">Sebagai upaya memaksimalkan hasil dari industri UMKM mesin ini di rancang dengan harapan dapat membantu pelaku usaha dalam memotong bahan baku berupa dodol dengan keunggulan dapat disesuaikan ketebalan dengan yang diinginkan.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">SolidWorks</span>
+                        <span class="tech-tag">AutoCAD</span>
+                        <span class="tech-tag">Solidworks Simulation</span>
+                        <span class="tech-tag">Motion Study</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience/Education Section -->
+    <section id="experience" class="fade-in">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - Sekarang</div>
+                    <h3>Mahaiswa semester Akhir</h3>
+                    <p>Politeknik Enjiniring Pertanian Indonesia - Teknologi Mekanisasi Pertanian<br>IPK : 3.5,3/4.0</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Projek Mandiri 2025</div>
+                    <h3>Perancang</h3>
+                    <p>Works Shop Politeknik Enjiniring Pertanian Indonesia<br>Mini Crane Mobile maksimal kapasitas 1.5 ton</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Projek Tugas Akhir</div>
+                    <h3>Modifikasi Tuas Transmisi</h3>
+                    <p>merancang dan membuat prototipe sistem tuas pada mesin pemotong biomassa</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">Jasa Desain 3D SolidWorks & AutoCAD</div>
+                    <h3>Mengerjakan gambar sesuai Reques Customer</h3>
+                    <p>Penawaran melakui Tiktok dan Facebook<br>fokus pada desain 3D mekanisme dan perancangan model</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>ipalelek12@email.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <h3>LinkedIn</h3>
+                <p>/in/Arifal Yoga Dwimulti</p>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-tiktok"></i>
+                <h3>TikTok</h3>
+                <p>@Arifalyd</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
+            const icon = themeToggle.querySelector('i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+            localStorage.setItem('theme', body.dataset.theme);
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        body.dataset.theme = savedTheme;
+        const icon = themeToggle.querySelector('i');
+        if (savedTheme === 'dark') {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
